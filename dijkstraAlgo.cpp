@@ -373,11 +373,11 @@ void printLengthNPath(vector<Vertex> &vertices, Heap &heap, int startVertex, int
     Returns:
         None
     */
-    cout << vertices[endVertex].distance << endl;
+    cout << vertices[endVertex].distance << endl;   //Length to get from <StartVertex> to <EndVertex>
     while(vertices[endVertex].prior != -1){
         int temp = vertices[endVertex].prior;
         // cout << "First Edge: " << endVertex << " | Second Edge: " << temp << "| Next Prior: " << vertices[temp].prior << endl;
-        cout << endVertex << " " << temp << endl;
+        cout << endVertex << " " << temp << endl; // Edge1 Edge2
         endVertex = temp; 
     }
 }
@@ -441,15 +441,6 @@ void dijkstraAlgo(Heap &heap, vector<Vertex> &v, HeapElement &element) {
         // heapShow(heap);
     }
 
-    // cout << totalCost << "\n";
-    // for(int i = 0; i < v.size(); ++i){
-    //     if (v[i].distance > max){
-    //         max = v[i].distance;
-    //         cout << "Distance to vertex " << i << " is " << v[i].distance << endl;
-    //     }
-    // }
-    // cout << "Max Distance: " << max  << endl;
-
     if(chooseStart){
         int getVal;
         cout << "Which Distance to Find? (" << randNumStart << "-> X) | " << "X = 0 ->" << v.size()-1 << ")"  << endl;
@@ -458,16 +449,15 @@ void dijkstraAlgo(Heap &heap, vector<Vertex> &v, HeapElement &element) {
     } else {
         printLengthNPath(v, heap, 0, v.size()-1);
     }
-
-    // int num = v.size()-1;
-    // int test;
-    // cout << "Length: " << v[num].distance;
-    // while(v[num].prior != -1){
-    //     int temp = heap.minHeap[heap.index[num]].vertexNumber;
-    //     cout << "First Edge: " << num << " | Second Edge: " << temp << "| Next Prior: " << v[temp].prior << endl;
-    //     num = v[temp].prior;
-    //     cin >> test; 
+    
+    // cout << totalCost << "\n";
+    // for(int i = 0; i < v.size(); ++i){
+    //     if (v[i].distance > max){
+    //         max = v[i].distance;
+    //         cout << "Distance to vertex " << i << " is " << v[i].distance << endl;
+    //     }
     // }
+    // cout << "Max Distance: " << max  << endl;
 }
 
 int main(int argc, char *argv[]) {
@@ -483,7 +473,7 @@ int main(int argc, char *argv[]) {
         - 1: Error in opening the input file
     */
 
-    //Read the input file and build the array to be sorted
+    //Read the input file and build the vertices and edges
     ifstream inputFile;
 
     if (readFile(inputFile, argc, argv)) {
@@ -496,16 +486,7 @@ int main(int argc, char *argv[]) {
     int numV;
     int numE;
     Heap heap;
-    // int i;
-    // int eI;
-    vector<int> s;
-    int v1;
-    int v2;
-    int length;
     HeapElement element;
-    // vector<Edge> outEdge;
-    // int outEdge;
-    int max;
 
     //Initialize the data
     initData(inputFile, numV, numE, v, e, heap);
